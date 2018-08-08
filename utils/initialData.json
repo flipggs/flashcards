@@ -1,0 +1,24 @@
+{
+  "React": {
+    "title": "React",
+    "questions": [
+      {
+        "question": "O que é React?",
+        "answer": "Uma biblioteca para gerenciar interfaces de usuário"
+      },
+      {
+        "question": "Onde você faz pedidos de Ajax no React?",
+        "answer": "O evento do ciclo de vida componentDidMount"
+      }
+    ]
+  },
+  "JavaScript": {
+    "title": "JavaScript",
+    "questions": [
+      {
+        "question": "O que é um closure?",
+        "answer": "A combinação de uma função e o ambiente léxico no qual essa função foi declarada."
+      }
+    ]
+  }
+}
