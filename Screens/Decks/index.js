@@ -9,18 +9,22 @@ import { darkGray } from './../../utils/colors'
 import initialData from './../../utils/initialData.json'
 
 class Decks extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       isFetching: true
     }
   }
 
-  componentDidMount () {
-    this.updateComponent(initialData)
+  componentDidMount() {
+    getDecks().then((result) => {
+      if (result && result.length > 0)
+        this.updateComponent(initialData)
+    })
+
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { decks } = this.props
     const { updated } = this.state
     if (decks !== undefined) {
@@ -36,7 +40,7 @@ class Decks extends Component {
     }
   }
 
-  async updateComponent (data) {
+  async updateComponent(data) {
     const { dispatch } = this.props
     await setDecks(data)
     getDecks().then((result) => {
@@ -47,7 +51,7 @@ class Decks extends Component {
     })
   }
 
-  render () {
+  render() {
     const { navigation = {}, decks } = this.props
     const { isFetching } = this.state
     const decksArray = decks !== undefined ? Object.values(decks) : []

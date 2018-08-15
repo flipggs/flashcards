@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Result from './../Result/'
 import { container, deckTitle, deckSubtitle } from './../../utils/styles'
 import { blue, red } from './../../utils/colors'
+import { clearLocalNotification } from '../../utils/api'
 
 class Quiz extends Component {
   constructor () {
@@ -60,6 +61,7 @@ class Quiz extends Component {
   }
 
   resetQuiz = () => {
+    clearLocalNotification()
     this.cleanState()
   }
 
