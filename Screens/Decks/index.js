@@ -18,7 +18,7 @@ class Decks extends Component {
 
   componentDidMount() {
     getDecks().then((result) => {
-      if (result && result.length > 0)
+      if (result && result.length === 0)
         this.updateComponent(initialData)
     })
 
@@ -44,10 +44,14 @@ class Decks extends Component {
     const { dispatch } = this.props
     await setDecks(data)
     getDecks().then((result) => {
-      dispatch(listDecks(JSON.parse(result)))
-      this.setState({
-        isFetching: false
-      })
+      if (result && result.length === 0)
+        this.updateComponent(initialData)
+      else {
+        dispatch(listDecks(JSON.parse(result)))
+        this.setState({
+          isFetching: false
+        })
+      }
     })
   }
 
