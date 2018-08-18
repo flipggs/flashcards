@@ -16,12 +16,15 @@ class Decks extends Component {
     }
   }
 
-  componentDidMount() {
-    getDecks().then((result) => {
-      if (result && result.length === 0)
-        this.updateComponent(initialData)
-    })
+  async componentDidMount() {
+    const result = await getDecks()
 
+    if (result && result.length === 0) {
+      this.updateComponent(initialData)
+    } else {
+      this.setState({ isFetching: false })
+      this.props.dispatch(listDecks(JSON.parse(result)))
+    }
   }
 
   componentWillReceiveProps(nextProps) {
